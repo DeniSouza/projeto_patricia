@@ -1,0 +1,19 @@
+nav.menu{
+    background-color: var(--bg-menu);
+    text-align: right;
+    height: 10px;
+}
+
+.menu a{
+ position: relative;
+ bottom: 30px;
+ text-decoration:dotted;
+ color: black;
+ padding: 5px;
+ font-size: 25px;
+
+}
+
+.menu a:hover{
+    color:red;
+}
