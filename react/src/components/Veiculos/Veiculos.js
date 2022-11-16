@@ -38,7 +38,7 @@ export default class Veiculos extends Component {
     }
     salvar() {
         const veiculo = this.state.veiculo;
-        veiculo.codCurso = Number(veiculo.modelo);
+        veiculo.modelo = Number(veiculo.modelo);
         const metodo = veiculo.id ? 'put' : 'post';
         const url = veiculo.id ? `${urlAPI}/${veiculo.id}` : urlAPI;
 
@@ -87,6 +87,18 @@ export default class Veiculos extends Component {
     renderForm() {
         return (
             <div className="inclui-container">
+                <label>  Cod Montadora </label>
+                <input
+                    type="number"
+                    id="codMontadora"
+                    className="form-input"
+                    name="codMontadora"
+
+                    value={this.state.veiculo.codMontadora}
+
+                    onChange={e => this.atualizaCampo(e)}
+                />
+
                 <label> Montadora </label>
                 <input
                     type="text"
@@ -99,6 +111,9 @@ export default class Veiculos extends Component {
 
                     onChange={e => this.atualizaCampo(e)}
                 />
+
+
+
 
                 <label> Modelo: </label>
                 <input
@@ -183,7 +198,7 @@ export default class Veiculos extends Component {
                 <table className="listaveiculos" id="tblListaveiculos">
                     <thead>
                         <tr className="cabecTabela">
-                        <th className="cabecTabela">Montadora</th>
+                            <th className="cabecTabela">Montadora</th>
                             <th className="cabecTabela">Modelo</th>
                             <th className="cabecTabela">Ano</th>
                             <th className="cabecTabela">Cor</th>
@@ -195,8 +210,8 @@ export default class Veiculos extends Component {
                     <tbody>
                         {this.state.lista.map(
                             (veiculo) =>
-                                <tr key={veiculo.id}>                                    
-                                    <td>{veiculo.montadora}</td>                                    
+                                <tr key={veiculo.id}>
+                                    <td>{veiculo.montadora}</td>
                                     <td>{veiculo.modelo}</td>
                                     <td>{veiculo.ano}</td>
                                     <td>{veiculo.cor}</td>

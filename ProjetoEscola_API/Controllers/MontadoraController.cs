@@ -53,7 +53,7 @@ namespace ProjetoEscola_API.Controllers
                 if (await _context.SaveChangesAsync() == 1)
                 {
                     //return Ok();
-                    return Created($"/api/Montadora/{model.id}", model);
+                    return Created($"/api/Montadora/{model.codMontadora}", model);
                 }
             }
             catch
@@ -76,11 +76,11 @@ namespace ProjetoEscola_API.Controllers
                     return BadRequest();
                 }
 
-                result.id = dadosMontadoraAlt.id;
+                result.codMontadora = dadosMontadoraAlt.codMontadora;
                 result.montadora = dadosMontadoraAlt.montadora;
                 result.país = dadosMontadoraAlt.país;
                 await _context.SaveChangesAsync();
-                return Created($"/api/Montadoras/{dadosMontadoraAlt.id}", dadosMontadoraAlt);
+                return Created($"/api/Montadora/{dadosMontadoraAlt.id}", dadosMontadoraAlt);
             }
             catch
             {
@@ -95,13 +95,13 @@ namespace ProjetoEscola_API.Controllers
             try
             {
                 //verifica se existe aluno a ser excluído
-                var Montadora = await _context.Montadora.FindAsync(MontadoraId);
-                if (Montadora == null)
+                var montadora = await _context.Montadora.FindAsync(MontadoraId);
+                if (montadora == null)
                 {
                     //método do EF
                     return NotFound();
                 }
-                _context.Remove(Montadora);
+                _context.Remove(montadora);
                 await _context.SaveChangesAsync();
                 return NoContent();
             }

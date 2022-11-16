@@ -14,7 +14,6 @@ export default function Showroom() {
 
     const urlMontadora = "http://localhost:5120/api/montadora";
     const urlVeiculo = "http://localhost:5120/api/veiculo";
-    const urlImg =   "http://xsgames.co/randomusers/assets/avatars/pixel/";
 
     useEffect(() => {
         axios(urlVeiculo).then((reponse) => {
@@ -22,10 +21,13 @@ export default function Showroom() {
                 reponse.data.map((veiculo) => ({
                     id: veiculo.id,
                     modelo: veiculo.modelo,
+                    nomeMontadora: veiculo.nomeMontadora,
+                    valor:veiculo.valor,
                     ano: veiculo.ano,
                     cor: veiculo.cor,
                     km: veiculo.km,
                     placa:veiculo.placa,
+                    valor: veiculo.valor
                 }))
             );
         });
@@ -85,11 +87,12 @@ export default function Showroom() {
                 </div>
                 {selecionaVeiculo(veiculo).map((veiculo) => (
                     <Cards
-                        montadora={veiculo.montadora}
+                        nomeMontadora={veiculo.nomeMontadora}
                         modelo={veiculo.modelo}
                         ano={veiculo.ano}
+                        valor={veiculo.valor}
                         key={montadora.id}
-                        img={`${urlImg}${montadora.id}.jpg`}
+                        img={`${veiculo.id}.jpg`}
                     />
                 ))}
             </div>

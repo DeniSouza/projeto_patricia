@@ -1,23 +1,21 @@
 import './Card.css';
 
-export default function Cards ({nome,ra,codCurso,img}){
+
+export default function Cards ({nomeMontadora,modelo,ano,valor,img}){
     return(      
             
             <div className='card'>
-                <div className='imgCarro'>
-                   <img src={img}/> 
+                <div>
+                   <img className='imgCarro' src={img}/> 
                 </div>
                 <div className='nomeCarro'>
-                    Mclaren F1 Tributo Senna edição especial 50 anos
+                    {nomeMontadora} {modelo}
                 </div>
                 <div className='valor'>
-                    Valor
+                   Valor: {valor}
                 </div>
                 <div className='ano'>
-                    Ano
-                </div>
-                <div className='marca'>
-                    Marca
+                    Ano: {ano}
                 </div>
                 <p></p>
             </div>     
