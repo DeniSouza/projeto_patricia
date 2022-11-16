@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import "./Login.css";
+import Main from '../template/Main';
+
 
 
 export default function Login() {
@@ -8,8 +10,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
-    
-   
+
     return (
         <div className="content">
             <h1 className="tituloAuth">Login</h1>
@@ -49,11 +50,13 @@ export default function Login() {
                     />
                 </div>
                 <button type="submit">Login</button>
-                
-                <button type="submit">Ainda não tem Cadastro? Faça sua conta aqui</button>
+
+                <button type="submit">
+                    <a href="http://localhost:3000/Cadastro">Ainda não tem Cadastro? Faça sua conta aqui</a>
+                </button>
 
                 <h4 className="msgErro">{message}</h4>
             </form>
         </div>
-    );
+    );   
 }
