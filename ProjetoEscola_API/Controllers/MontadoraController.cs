@@ -78,7 +78,7 @@ namespace ProjetoEscola_API.Controllers
 
                 result.codMontadora = dadosMontadoraAlt.codMontadora;
                 result.montadora = dadosMontadoraAlt.montadora;
-                result.país = dadosMontadoraAlt.país;
+                result.pais = dadosMontadoraAlt.pais;
                 await _context.SaveChangesAsync();
                 return Created($"/api/Montadora/{dadosMontadoraAlt.id}", dadosMontadoraAlt);
             }

@@ -1,4 +1,8 @@
 import React, { Component, useEffect, useState } from 'react';
+import { BsTrash } from 'react-icons/bs';
+import { BiSave } from 'react-icons/bi';
+import { ImCancelCircle } from 'react-icons/im';
+import { MdModeEdit } from 'react-icons/md';
 import axios from 'axios';
 import './Veiculos.css';
 import Main from '../template/Main';
@@ -7,10 +11,10 @@ import '../CrudCurso/CrudCurso.js';
 
 const title = "Cadastro de Veiculos";
 
-const urlCurso = "http://localhost:5120/api/curso";
+const urlMontadora = "http://localhost:5120/api/montadora";
 const urlAPI = "http://localhost:5120/api/veiculo";
 const initialState = {
-    veiculo: { id: 0, modelo: '', ano: 0, cor: '', placa: '', montadora: '', km: 0 },
+    veiculo: { id: 0, modelo: '', ano: 0, cor: '', placa: '', nomeMontadora: '', km: 0 },
     lista: [],
     listaMontadora: [],
 }
@@ -27,8 +31,8 @@ export default class Veiculos extends Component {
             this.setState({ lista: resp.data })
             console.log(resp.data)
         })
-        axios(urlCurso).then(response => {
-            this.setState({ listaCurso: response.data })
+        axios(urlMontadora).then(response => {
+            this.setState({ listaMontadora: response.data })
             console.log(response.data);
         })
     }
@@ -38,7 +42,7 @@ export default class Veiculos extends Component {
     }
     salvar() {
         const veiculo = this.state.veiculo;
-        veiculo.modelo = Number(veiculo.modelo);
+        veiculo.modelo = String(veiculo.modelo);
         const metodo = veiculo.id ? 'put' : 'post';
         const url = veiculo.id ? `${urlAPI}/${veiculo.id}` : urlAPI;
 
@@ -79,40 +83,19 @@ export default class Veiculos extends Component {
     }
 
 
-
-
-
-
-
     renderForm() {
         return (
             <div className="inclui-container">
-                <label>  Cod Montadora </label>
-                <input
-                    type="number"
-                    id="codMontadora"
-                    className="form-input"
-                    name="codMontadora"
-
-                    value={this.state.veiculo.codMontadora}
-
-                    onChange={e => this.atualizaCampo(e)}
-                />
-
                 <label> Montadora </label>
                 <input
                     type="text"
-                    id="montadora"
+                    id="nomeMontadora"
                     placeholder="Montadora"
                     className="form-input"
-                    name="montadora"
-
-                    value={this.state.veiculo.montadora}
-
+                    name="nomeMontadora"
+                    value={this.state.veiculo.nomeMontadora}
                     onChange={e => this.atualizaCampo(e)}
                 />
-
-
 
 
                 <label> Modelo: </label>
@@ -122,9 +105,7 @@ export default class Veiculos extends Component {
                     placeholder="Modelo"
                     className="form-input"
                     name="modelo"
-
                     value={this.state.veiculo.modelo}
-
                     onChange={e => this.atualizaCampo(e)}
                 />
 
@@ -141,6 +122,20 @@ export default class Veiculos extends Component {
                     onChange={e => this.atualizaCampo(e)}
                 />
 
+                <label> Valor: </label>
+                <input
+                    type="number"
+                    id="valor"
+                    placeholder="Ano"
+                    className="form-input"
+                    name="valor"
+
+                    value={this.state.veiculo.valor}
+
+                    onChange={e => this.atualizaCampo(e)}
+                />
+
+
                 <label> Placa: </label>
                 <input
                     type="text"
@@ -154,7 +149,7 @@ export default class Veiculos extends Component {
                     onChange={e => this.atualizaCampo(e)}
                 />
 
-                <label> Quilometragem: </label>
+                <label> KM: </label>
                 <input
                     type="number"
                     id="km"
@@ -182,11 +177,11 @@ export default class Veiculos extends Component {
 
                 <button className="btnSalvar"
                     onClick={e => this.salvar(e)} >
-                    Salvar
+                    <BiSave />
                 </button>
                 <button className="btnCancelar"
                     onClick={e => this.limpar(e)} >
-                    Cancelar
+                    <ImCancelCircle size={100} />
                 </button>
             </div>
         )
@@ -211,7 +206,7 @@ export default class Veiculos extends Component {
                         {this.state.lista.map(
                             (veiculo) =>
                                 <tr key={veiculo.id}>
-                                    <td>{veiculo.montadora}</td>
+                                    <td>{veiculo.nomeMontadora}</td>
                                     <td>{veiculo.modelo}</td>
                                     <td>{veiculo.ano}</td>
                                     <td>{veiculo.cor}</td>
@@ -220,12 +215,12 @@ export default class Veiculos extends Component {
                                     <td></td>
                                     <td>
                                         <button onClick={() => this.carregar(veiculo)} >
-                                            Altera
+                                            <MdModeEdit />
                                         </button>
                                     </td>
                                     <td>
                                         <button onClick={() => this.remover(veiculo)} >
-                                            Remove
+                                            <BsTrash />
                                         </button>
                                     </td>
                                 </tr>

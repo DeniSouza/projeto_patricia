@@ -80,7 +80,8 @@ namespace ProjetoEscola_API.Controllers
                 result.ano = dadosVeiculoAlt.ano;
                 result.cor = dadosVeiculoAlt.cor;
                 result.placa = dadosVeiculoAlt.placa;
-                result.montadora = dadosVeiculoAlt.montadora;
+                result.nomeMontadora = dadosVeiculoAlt.nomeMontadora;
+                result.valor = dadosVeiculoAlt.valor;
                 
                 await _context.SaveChangesAsync();
                 return Created($"/api/Veiculo/{dadosVeiculoAlt.id}", dadosVeiculoAlt);

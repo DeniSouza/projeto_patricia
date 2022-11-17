@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Montadora.css';
+import { BsTrash } from 'react-icons/bs';
+import { BiSave } from 'react-icons/bi';
+import { ImCancelCircle } from 'react-icons/im';
+import { MdModeEdit } from 'react-icons/md';
 import Main from '../template/Main';
 
 
@@ -108,11 +112,11 @@ export default class Montadora extends Component {
                
                 <button className="btnSalvar"
                     onClick={e => this.salvar(e)} >
-                    Salvar
+                    <BiSave />
                 </button>
                 <button className="btnCancelar"
                     onClick={e => this.limpar(e)} >
-                    Cancelar
+                    <ImCancelCircle />
                 </button>
             </div>
         )
@@ -137,12 +141,12 @@ export default class Montadora extends Component {
                                     <td>{montadora.pais}</td>                                
                                     <td>
                                         <button onClick={() => this.carregar(montadora)} >
-                                            Altera
+                                        <MdModeEdit />
                                         </button>
                                     </td>
                                     <td>
                                         <button onClick={() => this.remover(montadora)} >
-                                            Remove
+                                        <BsTrash />
                                         </button>
                                     </td>
                                 </tr>
